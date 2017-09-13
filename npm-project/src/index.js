@@ -4,6 +4,10 @@ const data = require("./data");
 
 const math = require("./math");
 
+const sayHello = require("./say-hello");
+
+console.log(sayHello());
+
 console.log(math.add(10, 98));
 
 
