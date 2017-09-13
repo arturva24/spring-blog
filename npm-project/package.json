@@ -4,6 +4,7 @@
   "description": "npm project",
   "main": "src/index.js",
   "scripts": {
+    "build": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Arturo Valdez <art_jr2000@yahoo.com>",
