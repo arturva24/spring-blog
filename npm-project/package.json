@@ -1,0 +1,11 @@
+{
+  "name": "npm-project",
+  "version": "1.0.0",
+  "description": "npm project",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arturo Valdez <art_jr2000@yahoo.com>",
+  "license": "MIT"
+}
