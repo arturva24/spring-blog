@@ -5,22 +5,31 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
 <h1>Welcome to the Dice Roll Game</h1>
 
 <div>
-    <h2>Guess the Dice roll</h2>
+    <h2 class="question">Guess the Dice roll</h2>
 </div>
 
-<a class="btn btn-primary btn-group-lg" href="/roll-dice/1" role="group">1</a>
-<a class="btn btn-success btn-group-lg" href="/roll-dice/2" role="group">2</a>
-<a class="btn btn-info btn-group-lg" href="/roll-dice/3" role="group">3</a><br/>
-<a class="btn btn-warning btn-group-lg" href="/roll-dice/4" role="group">4</a>
-<a class="btn btn-danger btn-group-lg" href="/roll-dice/5" role="group">5</a>
-<a class="btn btn-info btn-group-lg" href="/roll-dice/6" role="group">6</a>
+<!--<a class="btn btn-primary btn-group-lg" href="/roll-dice/1" role="group">1</a>-->
+<!--<a class="btn btn-success btn-group-lg" href="/roll-dice/2" role="group">2</a>-->
+<!--<a class="btn btn-info btn-group-lg" href="/roll-dice/3" role="group">3</a><br/>-->
+<!--<a class="btn btn-warning btn-group-lg" href="/roll-dice/4" role="group">4</a>-->
+<!--<a class="btn btn-danger btn-group-lg" href="/roll-dice/5" role="group">5</a>-->
+<!--<a class="btn btn-info btn-group-lg" href="/roll-dice/6" role="group">6</a>-->
 
-<div>
+<a class="die one" href="/roll-dice/1">  <span class="dot"></span></a>
+<a class="die two" href="/roll-dice/2">  <span class="dot"></span></a>
+<a class="die three" href="/roll-dice/3"><span class="dot"></span></a>
+<a class="die four" href="/roll-dice/4"> <span class="dot"></span></a>
+<a class="die five" href="/roll-dice/5"> <span class="dot"></span></a>
+<a class="die six" href="/roll-dice/6">  <span class="dot"></span></a>
+
+
+<div th:if="${guess != null} ">
     <h2>Dice Roll is....</h2>
     <p>
     <h4><span th:text="${roll}"></span></h4>
