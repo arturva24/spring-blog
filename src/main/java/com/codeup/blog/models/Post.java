@@ -18,6 +18,13 @@ public class Post {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String body;
 
+
+    //this is the relationship to the User class
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Post(){
 
     }
