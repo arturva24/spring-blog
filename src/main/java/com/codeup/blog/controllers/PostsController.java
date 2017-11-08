@@ -1,34 +1,78 @@
+
 package com.codeup.blog.controllers;
 
-
+import com.codeup.blog.models.Post;
+import com.codeup.blog.repositories.PostRepository;
+import com.codeup.blog.services.PostSvc;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class PostsController {
+    private final PostSvc service;
+//    private final PostRepository postDao;
 
-        @GetMapping("/posts")
-        @ResponseBody
-        public String posts() {
-            return "posts index page!";
-        }
 
+
+    // Constructor injection
+//    @Autowired
+    public PostsController(PostSvc service, PostRepository postDao) {
+        this.service = service;
+//        this.postDao = postDao;
+    }
+
+    @GetMapping("/posts")
+    public String showAll(Model vModel) {
+//        List<Post> = service.findAll();
+        vModel.addAttribute("posts", service.findAll());
+        return "posts/index";
+    }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String postsId(@PathVariable int id) {
-        return "View an individual post " + id + ".";
+    public String showPost(@PathVariable int id, Model vModel){
+        vModel.addAttribute("post", service.findById(id));
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String postsCreateForm() {
-        return "view the form for creating a post";
-}
-    @PostMapping("/posts/create")
-    @ResponseBody
-    public String postsCreate() {
-        return "create a new post";
+    public String showCreateForm(){
+        return "posts/create";
     }
+
+    @PostMapping("/posts/create")
+    public String createPost(@ModelAttribute Post post){
+        service.savePosts(post);
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String showEditForm(Model vModel, @PathVariable long id){
+        vModel.addAttribute("post", service.findById(id));
+//        service.savePosts(existingPost);
+        return "posts/edit";
+
+    }
+
+    @PostMapping("/posts/{id}/edit")
+    public String updatePost(@PathVariable long id, @ModelAttribute Post post) {
+        Post existingPost = service.findById(id);
+//        post.setId(id);
+        existingPost.setTitle(existingPost.getTitle());
+        existingPost.setBody(existingPost.getBody());
+        service.savePosts(post);
+        return "redirect:/posts/" + post.getId();
+    }
+
+    @PostMapping("/posts/{id}/delete")
+    public String removeFromExistence(@PathVariable long id) {
+        service.delete(id);
+        return "redirect:/posts";
+    }
+
+
 
 }
