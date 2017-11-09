@@ -3,6 +3,7 @@ package com.codeup.blog.controllers;
 
 import com.codeup.blog.models.Post;
 import com.codeup.blog.repositories.PostRepository;
+import com.codeup.blog.repositories.UsersRepository;
 import com.codeup.blog.services.PostSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +15,14 @@ import java.util.List;
 @Controller
 public class PostsController {
     private final PostSvc service;
+//    private final UsersRepository usersDao;
 //    private final PostRepository postDao;
 
 
 
     // Constructor injection
-//    @Autowired
-    public PostsController(PostSvc service, PostRepository postDao) {
+    @Autowired
+    public PostsController(PostSvc service, UsersRepository usersDao) {
         this.service = service;
 //        this.postDao = postDao;
     }
@@ -45,6 +47,7 @@ public class PostsController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post){
+
         service.savePosts(post);
         return "redirect:/posts";
     }
