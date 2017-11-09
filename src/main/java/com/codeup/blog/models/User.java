@@ -2,6 +2,8 @@ package com.codeup.blog.models;
 
 import javax.persistence.*;
 
+import static com.sun.tools.doclint.Entity.copy;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -10,10 +12,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -26,7 +28,15 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+
     }
+        //copy constructor
+         public User(User copy) {
+            this.id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+            this.email = copy.email;
+            this.username = copy.username;
+            this.password = copy.password;
+        }
 
     public Long getId() {
         return id;
