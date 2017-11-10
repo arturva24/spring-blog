@@ -2,7 +2,6 @@ package com.codeup.blog.models;
 
 import javax.persistence.*;
 
-import static com.sun.tools.doclint.Entity.copy;
 
 @Entity
 @Table(name = "users")
