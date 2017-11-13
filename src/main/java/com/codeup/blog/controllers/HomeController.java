@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
+
     private PasswordEncoder encoder;
     private UsersRepository repository;
 
@@ -38,6 +39,7 @@ public class HomeController {
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
         return "users/registration";
+
     }
 
     @PostMapping("/register")
