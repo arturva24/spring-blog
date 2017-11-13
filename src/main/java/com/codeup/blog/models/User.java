@@ -1,8 +1,8 @@
 package com.codeup.blog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
-import static com.sun.tools.doclint.Entity.copy;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +20,9 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post>posts;
 
     public User() {
     }
